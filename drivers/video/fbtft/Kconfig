@@ -1,0 +1,25 @@
+menuconfig FB_TFT
+	tristate "Support for small TFT LCD display modules"
+	depends on FB && SPI && GPIOLIB
+	select FB_SYS_FILLRECT
+	select FB_SYS_COPYAREA
+	select FB_SYS_IMAGEBLIT
+	select FB_SYS_FOPS
+	select FB_DEFERRED_IO
+	select FB_BACKLIGHT
+
+config FB_TFT_ILI9341
+	tristate "FB driver for the ILI9341 LCD Controller"
+	depends on FB_TFT
+	help
+	  Generic Framebuffer support for ILI9341
+
+config FB_TFT_ILI9486
+	tristate "FB driver for the ILI9486 LCD Controller"
+	depends on FB_TFT
+	help
+	  Generic Framebuffer support for ILI9486
+
+config FB_TFT_FBTFT_DEVICE
+	tristate "Module to for adding FBTFT devices"
+	depends on FB_TFT

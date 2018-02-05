@@ -1,0 +1,40 @@
+/**********IMPORTANT:*******************************/
+If you want to create the patch yourself
+you will have to create the folder MANUALLY!!!!!!!!
+If not created manually, files inside the folder will
+not be seen by Git. Maybe I just don't know how to
+to it the right way, but the workaround I've figured 
+out is:
+
+1. create folder manually: linux/drivers/video/fbtft.
+2. copy files from fbtft to linux/drivers/video/fbtft.
+3. edit linux/drivers/video/Kconfig and linux/drivers/video/Makefile like in the fbtft/README file.
+3. From terminal execute:
+	cd edison_folder/workspace/linux
+	git add -A
+	git commit -m "edison_fbtft"
+	git format-patch -1
+4. Move edison_fbtft.patch to edison_folder/workspace/meta-intel-edison/meta-intel-edison-bsp/recipes-kernel/files
+5. Edit .../recipes-kernel/linux-externalsrc.bb
+	and add SRC_URI += "file://edison_fbtft.patch".
+6. Edit .../recipes-kernel/files/defconfig and add:
+	#
+	# FBTFT
+	#
+	CONFIG_FRAMEBUFFER_CONSOLE=m
+	CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=m
+	CONFIG_FB_SYS_FILLRECT=y
+	CONFIG_FB_SYS_COPYAREA=y
+	CONFIG_FB_SYS_IMAGEBLIT=y
+	CONFIG_FB_SYS_FOPS=y
+	CONFIG_FB_DEFERRED_IO=y
+	CONFIG_FB_BACKLIGHT=y
+	CONFIG_FB_TFT=m
+	CONFIG_FB_TFT_ILI9341=m
+	CONFIG_FB_TFT_ILI9486=m
+	CONFIG_FB_TFT_FBTFT_DEVICE=m
+7. Go to edison_folder/workspace:
+	make
+8. Go to toFlash folder and execute:
+	sudo ./flashall.sh
+DONE!

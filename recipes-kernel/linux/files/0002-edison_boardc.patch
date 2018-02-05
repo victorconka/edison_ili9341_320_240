@@ -1,0 +1,38 @@
+From 740e8712536d064e12df1465d6583ea9503343e8 Mon Sep 17 00:00:00 2001
+From: vsobolyev <s_vicuk@mail.ru>
+Date: Sun, 4 Feb 2018 07:23:07 +0100
+Subject: [PATCH] edison_boardc
+
+---
+ arch/x86/platform/intel-mid/board.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/x86/platform/intel-mid/board.c b/arch/x86/platform/intel-mid/board.c
+index eb9d098..76a2afb 100644
+--- a/arch/x86/platform/intel-mid/board.c
++++ b/arch/x86/platform/intel-mid/board.c
+@@ -79,8 +79,8 @@
+  * SPI devices
+  */
+ #include "device_libs/platform_max3111.h"
+-#include "device_libs/platform_spidev.h"
+-#include "device_libs/platform_ads7955.h"
++//#include "device_libs/platform_spidev.h"
++//#include "device_libs/platform_ads7955.h"
+ 
+ /* WIFI devices */
+ #include "device_libs/platform_wl12xx.h"
+@@ -107,8 +107,8 @@ struct devs_id __initconst device_ids[] = {
+ 	{"pcal9555a-4", SFI_DEV_TYPE_I2C, 1, &pcal9555a_platform_data, NULL},
+ 
+ 	/* SPI devices */
+-	{"spidev", SFI_DEV_TYPE_SPI, 0, &spidev_platform_data, NULL},
+-	{"ads7955", SFI_DEV_TYPE_SPI, 0, &ads7955_platform_data, NULL},
++	//{"spidev", SFI_DEV_TYPE_SPI, 0, &spidev_platform_data, NULL},
++	//{"ads7955", SFI_DEV_TYPE_SPI, 0, &ads7955_platform_data, NULL},
+ 	{"bma023", SFI_DEV_TYPE_I2C, 1, &no_platform_data, NULL},
+ 	{"pmic_gpio", SFI_DEV_TYPE_SPI, 1, &pmic_gpio_platform_data, NULL},
+ 	{"pmic_gpio", SFI_DEV_TYPE_IPC, 1, &pmic_gpio_platform_data,
+-- 
+1.9.1
+
